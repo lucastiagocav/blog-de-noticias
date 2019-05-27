@@ -1,13 +1,10 @@
 package br.portal.noticias.entity;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,22 +22,14 @@ public class Autor {
 	@Column(name = "especializacao", length = 100)
 	private String especializacao;
 
-	@OneToMany(mappedBy = "autor")
-	private List<Noticia> noticias;
-
-	public List<Noticia> getNoticias() {
-		return noticias;
-	}
-
 	public Autor() {
 		super();
 	}
 
-	public Autor(String nome, String especializacao, List<Noticia> noticias) {
+	public Autor(String nome, String especializacao) {
 		super();
 		this.nome = nome;
 		this.especializacao = especializacao;
-		this.noticias = noticias;
 	}
 
 	public int getId_autor() {
@@ -66,5 +55,11 @@ public class Autor {
 	public void setEspecializacao(String especializacao) {
 		this.especializacao = especializacao;
 	}
+	
+	@Override
+	public String toString() {
+		return "| ID DO AUTOR: " + id_autor + " |\n| NOME DO AUTOR: " + nome + " |\n| ESPECIALIZAÇÃO: " + especializacao + " |";
+	}
+
 
 }

@@ -1,11 +1,13 @@
 package br.portal.noticias.dao;
 
-import javax.persistence.EntityManager;
+import java.util.List;
 
-import br.portal.noticias.connection.ConnectionFactory;
+public interface GenericDAO<T> {
+	 void salvar(T obj);
+	 void editar(T obj);
+	 void excluir(int id);
+	 List<T> getTodos();
+	 T encontrarPorId(int id);
 
-public class GenericDAO<T> {
 	
-	private static EntityManager manager = ConnectionFactory.getEntityManager();
-
 }

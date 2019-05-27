@@ -22,29 +22,34 @@ public class Noticia {
 	@Column(name = "titulo", length = 50)
 	private String titulo;
 
-	@Column(name = "data", length = 10)
+	@Column(name = "data", length = 10, nullable = true)
 	private Date data;
 
-	@Column(name = "descricao")
+	@Column(name = "descricao", length = 10000)
 	private String descricao;
 
 	@ManyToOne
 	@JoinColumn(name = "id_autor")
 	private Autor autor;
 
+	public Autor getAutor() {
+		return autor;
+	}
+
+	public void setAutor(Autor autor) {
+		this.autor = autor;
+	}
+
 	public Noticia() {
 		super();
 	}
 
-	public Noticia(String titulo, Date data, String descricao, Autor autor) {
+	public Noticia(String titulo, Date data, String descricao) {
 		super();
 		this.titulo = titulo;
 		this.data = data;
 		this.descricao = descricao;
-		this.autor = autor;
 	}
-	
-	
 
 	public int getId_noticia() {
 		return id_noticia;
@@ -77,13 +82,10 @@ public class Noticia {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-
-	public Autor getAutor() {
-		return autor;
+	
+	@Override
+	public String toString() {
+		return "| ID DA NOTÍCIA: " + id_noticia + "|\n| TÍTULO: " + titulo + " |\n| DATA: " + data + " |\n| DESCRIÇÃO: "
+				+ descricao + " |\n" + autor;
 	}
-
-	public void setAutor(Autor autor) {
-		this.autor = autor;
-	}
-
 }

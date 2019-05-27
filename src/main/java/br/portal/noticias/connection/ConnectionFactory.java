@@ -6,10 +6,11 @@ import javax.persistence.Persistence;
 
 public class ConnectionFactory {
 
-	private static EntityManagerFactory factory = Persistence.createEntityManagerFactory("");
+	private static EntityManagerFactory factory = Persistence.createEntityManagerFactory("portaldenoticias");
 
 	public static EntityManager getEntityManager() {
 		return factory.createEntityManager();
 	}
+	
 
 }
