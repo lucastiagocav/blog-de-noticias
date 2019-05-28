@@ -1,5 +1,7 @@
 package br.portal.noticias;
 
+import java.util.List;
+
 import br.portal.noticias.dao.AutorDaoImpl;
 import br.portal.noticias.dao.NoticiaDaoImpl;
 import br.portal.noticias.entity.Autor;
@@ -32,9 +34,14 @@ public class App {
 //		AutorDaoImpl autordao = new AutorDaoImpl();
 //		autordao.persist(claudio);
 //		Noticia noticia3 = new Noticia("Novo Java", "17/06/2018", "Bla-bla-bla-bla-bla-bla", claudio);
-//		NoticiaDaoImpl noticiadao = new NoticiaDaoImpl();
+		NoticiaDaoImpl noticiadao = new NoticiaDaoImpl();
 //		noticiadao.persist(noticia3);
-
+		
+		List<Noticia> noticias = noticiadao.findAll();
+		for (Noticia noticia : noticias) {
+			System.out.println(noticia);
+		}
+	
 	}
 
 }

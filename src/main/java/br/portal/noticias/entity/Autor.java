@@ -64,7 +64,7 @@ public class Autor {
 	@Override
 	public String toString() {
 		return "| ID DO AUTOR: " + id_autor + " |\n| NOME DO AUTOR: " + nome + " |\n| ESPECIALIZAÇÃO: " + especializacao
-				+ " |\n| Contatos: ";
+				+ " |\n| Contatos: " + contato;
 	}
 
 }

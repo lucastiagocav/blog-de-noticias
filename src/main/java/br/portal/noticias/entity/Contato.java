@@ -20,6 +20,7 @@ public class Contato {
 	public Contato() {
 		super();
 	}
+
 	public Contato(String linkedin, String github, String email, String telefone) {
 		super();
 		this.linkedin = linkedin;
@@ -60,4 +61,8 @@ public class Contato {
 		this.telefone = telefone;
 	}
 
+	@Override
+	public String toString() {
+		return "Linkedin: " + linkedin + " - Github: " + github + " - Email: " + email + " - Telefone=" + telefone;
+	}
 }
