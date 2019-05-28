@@ -13,14 +13,14 @@ public class AutorDaoImpl implements GenericDAO<Autor> {
 	private EntityManager em = ConnectionFactory.getEntityManager();
 	
 	
-	public void salvar(Autor obj) {
+	public void persist(Autor obj) {
 		em.getTransaction().begin();
 		em.persist(obj);
 		em.getTransaction().commit();
 		
 	}
 
-	public void editar(Autor obj) {
+	public void merge(Autor obj) {
 		em.getTransaction().begin();
 		em.merge(obj);
 		em.getTransaction().commit();
@@ -28,21 +28,21 @@ public class AutorDaoImpl implements GenericDAO<Autor> {
 		
 	}
 
-	public void excluir(int id) {
+	public void remove(int id) {
 		em.getTransaction().begin();		
 		em.remove(em.getReference(Autor.class, id));
 		em.getTransaction().commit();
 		em.close();		
 	}
 
-	public List<Autor> getTodos() {
+	public List<Autor> findAll() {
 		String jpql = "Select n from Autores n";
 		TypedQuery<Autor> query = em.createQuery(jpql, Autor.class);
 		return query.getResultList();
 	}
 
 
-	public Autor encontrarPorId(int id) {
+	public Autor getById(int id) {
 		return em.find(Autor.class, id);
 	}
 

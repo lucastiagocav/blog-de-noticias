@@ -10,41 +10,67 @@ import br.portal.noticias.entity.Noticia;
 
 public class NoticiaDaoImpl implements GenericDAO<Noticia> {
 
-	private EntityManager em = ConnectionFactory.getEntityManager();
+	private EntityManager entityManager = ConnectionFactory.getEntityManager();
 
-	public void salvar(Noticia obj) {
-		em.getTransaction().begin();
-		em.persist(obj);
-		em.getTransaction().commit();
-	}
-
-	public void editar(Noticia obj) {
-
-		if (obj != null) {
-
-			em.getTransaction().begin();
-			em.merge(obj);
-			em.getTransaction().commit();
-			em.close();
+	/**
+	 * Persiste os dados no Banco estabelecido no arquivo persistence.xml
+	 */
+	public void persist(Noticia obj) {
+		try {
+			entityManager.getTransaction().begin();
+			entityManager.persist(obj);
+			entityManager.getTransaction().commit();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			entityManager.getTransaction().rollback();
 		}
-
 	}
 
-	public void excluir(int id) {
-		em.getTransaction().begin();
-		em.remove(em.getReference(Noticia.class, id));
-		em.getTransaction().commit();
-		em.close();
+	/**
+	 * Edita os dados, utilizando uma referencia @id.
+	 * 
+	 * @param Noticia que será atualizada.
+	 */
+	public void merge(Noticia noticia) {
+
+		if (noticia != null) {
+			try {
+				entityManager.getTransaction().begin();
+				entityManager.merge(noticia);
+				entityManager.getTransaction().commit();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				entityManager.getTransaction().rollback();
+
+			}
+		}
 	}
 
-	public List<Noticia> getTodos() {
-		String jpql = "from noticias";
-		TypedQuery<Noticia> query = em.createQuery(jpql, Noticia.class);
+	/**
+	 * Remove um item anteriormente persistido, através de um ponto de
+	 * referência @id
+	 */
+	public void remove(int id) {
+		entityManager.getTransaction().begin();
+		entityManager.remove(entityManager.getReference(Noticia.class, id));
+		entityManager.getTransaction().commit();
+		entityManager.close();
+	}
+
+	/**
+	 * Lista todas as notícias.
+	 */
+	public List<Noticia> findAll() {
+		String jpql = "SELECT e FROM Noticia e";
+		TypedQuery<Noticia> query = entityManager.createQuery(jpql, Noticia.class);
 		return query.getResultList();
 	}
 
-	public Noticia encontrarPorId(int id) {
-		return em.find(Noticia.class, id);
+	/**
+	 * Lista uma notícia por @id
+	 */
+	public Noticia getById(int id) {
+		return entityManager.find(Noticia.class, id);
 	}
 
 }

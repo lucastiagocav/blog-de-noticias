@@ -25,7 +25,7 @@ public class Noticia {
 	@Column(name = "data", length = 10, nullable = true)
 	private Date data;
 
-	@Column(name = "descricao", length = 10000)
+	@Column(name = "descricao", length = 32767)
 	private String descricao;
 
 	@ManyToOne
@@ -82,7 +82,7 @@ public class Noticia {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "| ID DA NOTÍCIA: " + id_noticia + "|\n| TÍTULO: " + titulo + " |\n| DATA: " + data + " |\n| DESCRIÇÃO: "

@@ -1,6 +1,7 @@
 package br.portal.noticias.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +22,9 @@ public class Autor {
 
 	@Column(name = "especializacao", length = 100)
 	private String especializacao;
+
+	@Embedded
+	private Contato contato;
 
 	public Autor() {
 		super();
@@ -55,11 +59,11 @@ public class Autor {
 	public void setEspecializacao(String especializacao) {
 		this.especializacao = especializacao;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "| ID DO AUTOR: " + id_autor + " |\n| NOME DO AUTOR: " + nome + " |\n| ESPECIALIZAÇÃO: " + especializacao + " |";
+		return "| ID DO AUTOR: " + id_autor + " |\n| NOME DO AUTOR: " + nome + " |\n| ESPECIALIZAÇÃO: " + especializacao
+				+ " |\n| Contatos: ";
 	}
-
 
 }
