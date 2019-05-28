@@ -1,4 +1,4 @@
-package br.portal.noticias.entity;
+package br.blog.noticias.entity;
 
 import javax.persistence.Embeddable;
 
@@ -63,6 +63,6 @@ public class Contato {
 
 	@Override
 	public String toString() {
-		return "Linkedin: " + linkedin + " - Github: " + github + " - Email: " + email + " - Telefone=" + telefone;
+		return "Linkedin: " + linkedin + " - Github: " + github + " - Email: " + email + " - Telefone: " + telefone;
 	}
 }

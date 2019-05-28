@@ -1,7 +1,9 @@
-package br.portal.noticias.entity;
+package br.blog.noticias.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -9,6 +11,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import br.blog.noticias.enums.CategoriaNoticiaEnum;
+
+/**
+ * Entidade que objetifica uma notícia, tendo relação Muitos para um
+ * (explicitamente) com a entidade Autor.
+ * 
+ * @author Lucas Tiago
+ *
+ */
 @Entity
 @Table(name = "noticias")
 public class Noticia {
@@ -20,6 +31,10 @@ public class Noticia {
 	@Column(name = "titulo", length = 50)
 	private String titulo;
 
+	@Enumerated(EnumType.STRING)
+	@Column(name = "categoria")
+	private CategoriaNoticiaEnum categoriaNoticiaEnum;
+
 	@Column(name = "data", length = 10, nullable = true)
 	private String data;
 
@@ -30,21 +45,10 @@ public class Noticia {
 	@JoinColumn(name = "id_autor")
 	private Autor autor;
 
-	public Autor getAutor() {
-		return autor;
-	}
-
-	public void setAutor(Autor autor) {
-		this.autor = autor;
-	}
-
-	public Noticia() {
-		super();
-	}
-
-	public Noticia(String titulo, String data, String descricao, Autor autor) {
+	public Noticia(String titulo, CategoriaNoticiaEnum categoria, String data, String descricao, Autor autor) {
 		super();
 		this.titulo = titulo;
+		this.categoriaNoticiaEnum = categoria;
 		this.data = data;
 		this.descricao = descricao;
 		this.autor = autor;
@@ -80,6 +84,26 @@ public class Noticia {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public Autor getAutor() {
+		return autor;
+	}
+
+	public void setAutor(Autor autor) {
+		this.autor = autor;
+	}
+
+	public CategoriaNoticiaEnum getCategoriaNoticiaEnum() {
+		return categoriaNoticiaEnum;
+	}
+
+	public void setCategoriaNoticiaEnum(CategoriaNoticiaEnum categoriaNoticiaEnum) {
+		this.categoriaNoticiaEnum = categoriaNoticiaEnum;
+	}
+
+	public Noticia() {
+		super();
 	}
 
 	@Override

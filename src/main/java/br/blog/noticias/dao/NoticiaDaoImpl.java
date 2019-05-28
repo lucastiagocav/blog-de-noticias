@@ -1,12 +1,12 @@
-package br.portal.noticias.dao;
+package br.blog.noticias.dao;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import br.portal.noticias.connection.ConnectionFactory;
-import br.portal.noticias.entity.Noticia;
+import br.blog.noticias.connection.ConnectionFactory;
+import br.blog.noticias.entity.Noticia;
 
 public class NoticiaDaoImpl implements GenericDAO<Noticia> {
 
@@ -15,10 +15,10 @@ public class NoticiaDaoImpl implements GenericDAO<Noticia> {
 	/**
 	 * Persiste os dados no Banco estabelecido no arquivo persistence.xml
 	 */
-	public void persist(Noticia obj) {
+	public void persist(Noticia noticia) {
 		try {
 			entityManager.getTransaction().begin();
-			entityManager.persist(obj);
+			entityManager.persist(noticia);
 			entityManager.getTransaction().commit();
 		} catch (Exception ex) {
 			ex.printStackTrace();

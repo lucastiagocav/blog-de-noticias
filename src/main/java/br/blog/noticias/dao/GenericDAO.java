@@ -1,4 +1,4 @@
-package br.portal.noticias.dao;
+package br.blog.noticias.dao;
 
 import java.util.List;
 
