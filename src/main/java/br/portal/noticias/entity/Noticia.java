@@ -1,7 +1,5 @@
 package br.portal.noticias.entity;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +21,7 @@ public class Noticia {
 	private String titulo;
 
 	@Column(name = "data", length = 10, nullable = true)
-	private Date data;
+	private String data;
 
 	@Column(name = "descricao", length = 32767)
 	private String descricao;
@@ -44,11 +42,12 @@ public class Noticia {
 		super();
 	}
 
-	public Noticia(String titulo, Date data, String descricao) {
+	public Noticia(String titulo, String data, String descricao, Autor autor) {
 		super();
 		this.titulo = titulo;
 		this.data = data;
 		this.descricao = descricao;
+		this.autor = autor;
 	}
 
 	public int getId_noticia() {
@@ -67,11 +66,11 @@ public class Noticia {
 		this.titulo = titulo;
 	}
 
-	public Date getData() {
+	public String getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 

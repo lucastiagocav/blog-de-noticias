@@ -30,10 +30,11 @@ public class Autor {
 		super();
 	}
 
-	public Autor(String nome, String especializacao) {
+	public Autor(String nome, String especializacao, Contato contato) {
 		super();
 		this.nome = nome;
 		this.especializacao = especializacao;
+		this.contato = contato;
 	}
 
 	public int getId_autor() {

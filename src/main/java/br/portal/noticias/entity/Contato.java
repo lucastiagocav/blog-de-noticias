@@ -17,10 +17,13 @@ public class Contato {
 	private String email;
 	private String telefone;
 
-	public Contato(String linkedin, String facebook, String email, String telefone) {
+	public Contato() {
+		super();
+	}
+	public Contato(String linkedin, String github, String email, String telefone) {
 		super();
 		this.linkedin = linkedin;
-		this.github = facebook;
+		this.github = github;
 		this.email = email;
 		this.telefone = telefone;
 	}
